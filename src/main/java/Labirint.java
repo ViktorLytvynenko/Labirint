@@ -18,6 +18,9 @@ public class Labirint {
     public static void game() {
         Scanner in = new Scanner(System.in);
         System.out.println("Game starts!");
+        System.out.println("$ - gold");
+        System.out.println("X - wall");
+        System.out.println("1,2,3 - barriers");
         System.out.println("Choose your level");
         System.out.println("Easy or Hard");
         String level = "";
