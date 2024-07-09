@@ -210,8 +210,10 @@ public class Labirint {
                         System.out.println("wall");
                     } else if (nextCell > '1') {
                         board[playerCoordsY - 1][playerCoordsX] = (char) (nextCell - 1);
+                        countSteps++;
                     } else if (nextCell == '1') {
                         board[playerCoordsY - 1][playerCoordsX] = ' ';
+                        countSteps++;
                     } else {
                         if (nextCell == '$') gold++;
                         board[playerCoordsY][playerCoordsX] = ' ';
@@ -232,8 +234,10 @@ public class Labirint {
                         System.out.println("wall");
                     } else if (nextCell > '1') {
                         board[playerCoordsY][playerCoordsX - 1] = (char) (nextCell - 1);
+                        countSteps++;
                     } else if (nextCell == '1') {
                         board[playerCoordsY][playerCoordsX - 1] = ' ';
+                        countSteps++;
                     } else {
                         if (nextCell == '$') gold++;
                         board[playerCoordsY][playerCoordsX] = ' ';
