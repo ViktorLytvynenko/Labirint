@@ -11,6 +11,7 @@ public class Labirint {
     private static char[][] board;
     private static int countSteps = 0;
     private static int gold = 0;
+    private static String level = "";
 
     public Labirint() {
     }
@@ -23,7 +24,6 @@ public class Labirint {
         System.out.println("1,2,3 - barriers");
         System.out.println("Choose your level");
         System.out.println("Easy or Hard");
-        String level = "";
 
         do {
             level = in.nextLine().toLowerCase();
@@ -220,6 +220,7 @@ public class Labirint {
                         playerCoordsY -= 1;
                         board[playerCoordsY][playerCoordsX] = playerIcon;
                         countSteps++;
+                        win();
                     }
                 }
                 break;
@@ -244,6 +245,7 @@ public class Labirint {
                         playerCoordsX -= 1;
                         board[playerCoordsY][playerCoordsX] = playerIcon;
                         countSteps++;
+                        win();
                     }
                 }
                 break;
@@ -256,7 +258,7 @@ public class Labirint {
                     if (nextCell == 'X') {
                         System.out.println("wall");
                     } else if (nextCell > '1') {
-                        board[playerCoordsY][playerCoordsX + 1] = (char) (nextCell + 1);
+                        board[playerCoordsY][playerCoordsX + 1] = (char) (nextCell - 1);
                     } else if (nextCell == '1') {
                         board[playerCoordsY][playerCoordsX + 1] = ' ';
                     } else {
@@ -265,19 +267,20 @@ public class Labirint {
                         playerCoordsX += 1;
                         board[playerCoordsY][playerCoordsX] = playerIcon;
                         countSteps++;
+                        win();
                     }
                 }
                 break;
 
             case '↓':
-                if (playerCoordsY == 0) {
+                if (playerCoordsY == board.length - 1) {
                     System.out.println("Illegal move");
                 } else {
                     char nextCell = board[playerCoordsY + 1][playerCoordsX];
                     if (nextCell == 'X') {
                         System.out.println("wall");
                     } else if (nextCell > '1') {
-                        board[playerCoordsY - 1][playerCoordsX] = (char) (nextCell + 1);
+                        board[playerCoordsY - 1][playerCoordsX] = (char) (nextCell - 1);
                     } else if (nextCell == '1') {
                         board[playerCoordsY + 1][playerCoordsX] = ' ';
                     } else {
@@ -286,6 +289,7 @@ public class Labirint {
                         playerCoordsY += 1;
                         board[playerCoordsY][playerCoordsX] = playerIcon;
                         countSteps++;
+                        win();
                     }
                 }
                 break;
@@ -297,5 +301,12 @@ public class Labirint {
         if (move.equals("l")) rotateLeft();
         else if (move.equals("r")) rotateRight();
         else step();
+    }
+
+    public static void win() {
+        if (gold == 4 && level.equals("easy") || gold == 8 && level.equals("hard")) {
+            System.out.println("Congratulations, you have won!");
+            System.exit(0);
+        }
     }
 }
